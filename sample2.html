@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET 10 / C# 14 学習スペース - Tabs</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --accent: #512bd4;
+            --accent-dark: #341493;
+            --accent-soft: #eeeafa;
+            --background: #f4f5f7;
+            --surface: #ffffff;
+            --text: #252429;
+            --muted: #696773;
+            --border: #dedce6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: "Segoe UI", "Yu Gothic UI", sans-serif;
+            line-height: 1.65;
+        }
+
+        main {
+            width: min(880px, calc(100% - 32px));
+            margin: 48px auto;
+        }
+
+        header {
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: var(--accent-dark);
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            letter-spacing: 0;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .tabs-shell {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            box-shadow: 0 10px 30px rgba(44, 39, 70, 0.08);
+        }
+
+        [role="tablist"] {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            background: #fafafa;
+            border-bottom: 1px solid var(--border);
+        }
+
+        [role="tab"] {
+            min-height: 52px;
+            padding: 12px 16px;
+            border: 0;
+            border-right: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        [role="tab"]:last-child {
+            border-right: 0;
+        }
+
+        [role="tab"][aria-selected="true"] {
+            background: var(--surface);
+            color: var(--accent);
+            box-shadow: inset 0 -3px var(--accent);
+        }
+
+        [role="tab"]:focus-visible {
+            outline: 3px solid #9c8ae6;
+            outline-offset: -4px;
+        }
+
+        [role="tabpanel"] {
+            min-height: 250px;
+            padding: clamp(24px, 5vw, 40px);
+        }
+
+        [role="tabpanel"][hidden] {
+            display: none;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--accent-dark);
+            font-size: 1.35rem;
+        }
+
+        .topic-list {
+            margin: 20px 0 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .topic-list li {
+            position: relative;
+            margin-top: 10px;
+            padding: 14px 16px 14px 46px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .topic-list li::before {
+            content: "";
+            position: absolute;
+            left: 18px;
+            top: 21px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        footer {
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                width: min(100% - 20px, 880px);
+                margin: 24px auto;
+            }
+
+            [role="tab"] {
+                min-height: 64px;
+                padding: 8px 5px;
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>.NET 10 / C# 14 学習スペース</h1>
+            <p>研究テーマをタブで切り替える、GitHub Pages 用の別案です。</p>
+        </header>
+
+        <section class="tabs-shell" aria-label="学習テーマ">
+            <div role="tablist" aria-label="学習カテゴリ">
+                <button id="tab-csharp" role="tab" aria-selected="true" aria-controls="panel-csharp">C# 14</button>
+                <button id="tab-dotnet" role="tab" aria-selected="false" aria-controls="panel-dotnet" tabindex="-1">.NET 10</button>
+                <button id="tab-github" role="tab" aria-selected="false" aria-controls="panel-github" tabindex="-1">GitHub</button>
+            </div>
+
+            <div id="panel-csharp" role="tabpanel" aria-labelledby="tab-csharp">
+                <h2>C# 14 の新機能</h2>
+                <p>言語機能を小さなサンプルで検証し、覚えておきたい内容を整理します。</p>
+                <ul class="topic-list">
+                    <li><code>field</code> キーワードを使ったプロパティの簡略化</li>
+                    <li>拡張メンバーとコンパイラの挙動を確認</li>
+                    <li>既存コードへの移行時に注意する互換性</li>
+                </ul>
+                <span class="status">学習中</span>
+            </div>
+
+            <div id="panel-dotnet" role="tabpanel" aria-labelledby="tab-dotnet" hidden>
+                <h2>.NET 10 アプリケーション</h2>
+                <p>コンソールアプリを起点に、ランタイムの動作や開発環境を確認します。</p>
+                <ul class="topic-list">
+                    <li>.NET 10 SDK のセットアップとグローバル設定</li>
+                    <li>コンソールアプリケーションのビルド・実行</li>
+                    <li>パフォーマンス診断と新しいAPIの検証</li>
+                </ul>
+                <span class="status">検証予定</span>
+            </div>
+
+            <div id="panel-github" role="tabpanel" aria-labelledby="tab-github" hidden>
+                <h2>GitHub での開発</h2>
+                <p>コード管理から公開まで、GitHub Pages の運用を練習します。</p>
+                <ul class="topic-list">
+                    <li>ブランチを使った変更の分離とレビュー</li>
+                    <li>Issue と Pull Request の連携</li>
+                    <li>GitHub Pages への静的サイト公開</li>
+                </ul>
+                <span class="status">継続中</span>
+            </div>
+        </section>
+
+        <footer>© 2026 Shimiken - Built with GitHub Pages</footer>
+    </main>
+
+    <script>
+        const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+        function selectTab(tab) {
+            tabs.forEach((item) => {
+                const selected = item === tab;
+                item.setAttribute('aria-selected', selected);
+                item.tabIndex = selected ? 0 : -1;
+                document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+            });
+        }
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => selectTab(tab));
+            tab.addEventListener('keydown', (event) => {
+                let nextIndex;
+                if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+                if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+                if (event.key === 'Home') nextIndex = 0;
+                if (event.key === 'End') nextIndex = tabs.length - 1;
+
+                if (nextIndex !== undefined) {
+                    event.preventDefault();
+                    tabs[nextIndex].focus();
+                    selectTab(tabs[nextIndex]);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
